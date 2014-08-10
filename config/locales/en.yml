@@ -1,0 +1,29 @@
+en:
+  rails_validations:
+    email:
+      invalid: not a valid email address
+
+    date:
+      invalid: not a valid date
+      after: must be after %{date}
+      after_or_equal_to: must be after or equal to %{date}
+      equal_to: must be equal to %{date}
+      before: must be before %{date}
+      before_or_equal_to: must be before or equal to %{date}
+
+    iban:
+      invalid: not a valid IBAN account number
+      too_short: has to have more than 5 characters
+      bad_chars: can only have letter and numbers
+      bad_check_digits: checksum didn't match
+      unknown_country_code: unknown country code
+      bad_length: bad length
+      bad_format: invalid format
+
+    phone:
+      invalid: not a valid phone number
+
+    domain:
+      invalid: not a valid domain
+      max_domain_parts: only %{max} domain parts are allowed
+      min_domain_parts: needs to have at least %{min} domain parts

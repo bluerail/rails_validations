@@ -1,0 +1,3 @@
+--no-color
+--fail-fast
+--format documentation

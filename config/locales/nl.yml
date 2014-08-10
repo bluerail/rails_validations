@@ -1,0 +1,29 @@
+nl:
+  rails_validations:
+    email:
+      invalid: geen geldig E-mailaddress
+
+    date:
+      invalid: geen geldige datum
+      after: moet na %{date} zijn
+      after_or_equal_to: moet na of op %{date} zijn
+      equal_to: moet gelijk zijn aan %{date}
+      before: moet voor %{date} zijn
+      before_or_equal_to: moet voor of gelijk zijn aan %{date}
+
+    iban:
+      invalid: geen geldig IBAN rekeningnummer
+      too_short: moet meer dan 5 karakters bevatten
+      bad_chars: kan alleen letters en nummers bevatten
+      bad_check_digits: checksum klopt niet
+      unknown_country_code: ongeldige landcode
+      bad_length: verkeerde lengte
+      bad_format: verkeerd formaat
+
+    phone:
+      invalid: geen geldig telefoonnummer
+
+    domain:
+      invalid: geen geldig domain
+      max_domain_parts: er zijn %{max} domeinstukken toegestaan
+      min_domain_parts: er moeten minimaal %{min} domainstukken zijn
