@@ -49,9 +49,7 @@ class DateValidator < ActiveModel::EachValidator
                      end
 
       unless value.send CHECKS[option], option_value
-        # TODO: Format date according to locale? Or does rails do that
-        # automagically?
-        record.errors.add attribute, I18n.t("rails_validations.date.#{option}", date: option_value)
+        record.errors.add attribute, I18n.t("rails_validations.date.#{option}", date: I18n.l(option_value))
       end
     end
   end
