@@ -23,7 +23,7 @@ class DateValidator < ActiveModel::EachValidator
             elsif raw_value.respond_to? :to_date
               raw_value.to_date
             else
-              record.errors.add attribute, I18n.t('rails_validations.date.invalid')
+              false
             end
 
             #elsif raw_value.is_a?(Symbol) || raw_value.is_a?(String)
@@ -47,6 +47,11 @@ class DateValidator < ActiveModel::EachValidator
                      else
                        raise ArgumentError
                      end
+
+      unless option_value
+        record.errors.add attribute, I18n.t('rails_validations.date.invalid')
+        return
+      end
 
       unless value.send CHECKS[option], option_value
         record.errors.add attribute, I18n.t("rails_validations.date.#{option}", date: I18n.l(option_value))

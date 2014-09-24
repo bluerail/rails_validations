@@ -15,7 +15,6 @@ describe ValidationsSpecHelper::Date do
     with_validation 'date: true' do
       expect(model(Date.today).valid?).to eq(true)
       expect(model(Time.now).valid?).to eq(true)
-
     end
   end
 

@@ -45,11 +45,13 @@ module ValidationsSpecHelper
 
     def v; @value end
     def v= v; @value = v end
+    def v2; @value end
+    def v2= v; @value = v end
   end
 
 
-  def model v
-    described_class.new v: v
+  def model v, v2=nil
+    described_class.new v: v, v2: v2
   end
 
 
