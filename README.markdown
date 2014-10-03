@@ -4,7 +4,7 @@ A few extra validations for rails.
 
 date
 ----
-Validate is a column is a date, and if it's before or after another date.
+Validate if a column is a valid date, and if it's before or after another date.
 
     validates :date_column, date: true
     validates :date_column, date: { after: Date.today }
@@ -33,7 +33,7 @@ email
 -----
 Do a basic checks for emails. Not that this check is *not* very strict, it is
 nigh-impossible to check if an email address is valid (and even if it is, it's
-no guarantee if email actually gets delivered to this address). This should
+no guarantee if emails actually gets delivered to this address). This should
 work with unicode addresses ([RFC 6531][rfc6531], [IDN][idn]).
 
     validates :email_column, email: true
@@ -60,7 +60,9 @@ postal\_code
 Check if this is a valid postal code (or zip code for the states).
 
 Currently implemented countries:
+
 - `nl` - The Netherlands
+
 
 
     validates :postal_code_column, postal_code: { country: :nl }
@@ -73,15 +75,16 @@ Currently implemented countries:
 ChangeLog
 =========
 
-1.1, 20141003
--------------
+version 1.1, 20141003
+---------------------
 - Make the date validation work if the column it points to is `nil`.
 - Add documentation.
 
 
-1.0, 20140905
--------------
+version 1.0, 20140905
+---------------------
 - Initial release.
+
 
 [idn]: http://en.wikipedia.org/wiki/Internationalized_domain_name).
 [rfc6531]: https://tools.ietf.org/html/rfc6531
