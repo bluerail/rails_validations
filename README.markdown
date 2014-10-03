@@ -59,17 +59,15 @@ postal\_code
 ------------
 Check if this is a valid postal code (or zip code for the states).
 
-Currently implemented countries:
-
-- `nl` - The Netherlands
-
-
-
     validates :postal_code_column, postal_code: { country: :nl }
 
     # Country defaults to I18n.locale
     validates :postal_code_column, postal_code: true
 
+
+Currently implemented countries:
+
+- `nl` - The Netherlands
 
 
 ChangeLog
