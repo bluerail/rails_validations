@@ -45,8 +45,8 @@ module ValidationsSpecHelper
 
     def v; @value end
     def v= v; @value = v end
-    def v2; @value end
-    def v2= v; @value = v end
+    def v2; @value2 end
+    def v2= v; @value2 = v end
   end
 
 
