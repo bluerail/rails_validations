@@ -37,7 +37,11 @@ class DateValidator < ActiveModel::EachValidator
 
     options.slice(*CHECKS.keys).each do |option, raw_option_value|
       option_value = if raw_option_value.respond_to? :call
-                       raw_option_value.call record
+                       if raw_option_value.parameters == []
+                         raw_option_value.call
+                       else
+                         raw_option_value.call record
+                       end
                      elsif raw_option_value.is_a? Symbol
                        record.send raw_option_value
                      elsif raw_option_value.is_a? Fixnum
