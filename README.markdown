@@ -1,6 +1,8 @@
+[![Gem Version](https://badge.fury.io/rb/rails_validations.svg)](http://badge.fury.io/rb/rails_validations)
+
+
 A few extra validations for rails.
 
-[RubyGems.org entry](http://rubygems.org/gems/rails_validations)
 
 date
 ----
