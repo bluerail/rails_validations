@@ -73,6 +73,11 @@ Currently implemented countries:
 ChangeLog
 =========
 
+version 1.1.1, 20141013
+-----------------------
+- Fix i18n key for `phone`
+- Allow passing a Proc to `date` without an argument
+
 version 1.1, 20141003
 ---------------------
 - Make the date validation work if the column it points to is `nil`.
