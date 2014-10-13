@@ -5,6 +5,6 @@ class PhoneValidator < ActiveModel::EachValidator
   \z/x.freeze
 
   def validate_each record, attribute, value
-    record.errors.add attribute, (options[:message] || I18n.t('rails_validations.invalid_phone')) unless value =~ REGEXP
+    record.errors.add attribute, (options[:message] || I18n.t('rails_validations.phone.invalid')) unless value =~ REGEXP
   end
 end
