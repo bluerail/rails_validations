@@ -1,7 +1,7 @@
 nl:
   rails_validations:
     email:
-      invalid: geen geldig E-mailaddress
+      invalid: geen geldig e-mailaddress
 
     date:
       invalid: geen geldige datum
