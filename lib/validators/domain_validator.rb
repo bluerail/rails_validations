@@ -1,3 +1,11 @@
+# Validate if a string is a valid domain. This should work with [IDN](idn).
+#
+#  validates :domain_column, domain: true
+#
+# Set a minimum/maximum number of domain parts (aka. labels)
+#
+#  validates :domain_column, domain: { min_domain_parts: 2 }
+#  validates :domain_column, domain: { max_domain_parts: 2 }
 class DomainValidator < ActiveModel::EachValidator
   #\A[a-zA-Z\d-]{,63}\z
   REGEXP = /

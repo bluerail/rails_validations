@@ -1,3 +1,5 @@
+# Basic check for a telephone number; this should work with most, of not all,
+# writing conventions.
 class PhoneValidator < ActiveModel::EachValidator
   REGEXP = /\A
     (\(?\+\d+\)?)?    # optional country code

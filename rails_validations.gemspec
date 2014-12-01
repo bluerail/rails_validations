@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'actionpack', '~> 4.0'
   s.add_dependency 'activerecord', '~> 4.0'
-  s.add_dependency 'iban-tools'
+  s.add_dependency 'iban-tools', '~> 1.0'
 
   s.add_development_dependency 'rspec-rails', '~> 3.0'
 end

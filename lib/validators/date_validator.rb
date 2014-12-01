@@ -1,3 +1,15 @@
+# Validate if a column is a valid date, and if it's before or after another date.
+# 
+#  validates :date_column, date: true
+#  validates :date_column, date: { after: Date.today }
+#  validates :date_column, date: { after_or_equal_to: Date.today }
+#  validates :date_column, date: { equal_to: Date.today }
+#  validates :date_column, date: { before: Date.today }
+#  validates :date_column, date: { before_or_equal_to: Date.today }
+# 
+# Check if the column `enddate` is after the value of the column `begindate`
+#   validates :begindate, date: true
+#   validates :enddate, date: { after: :begindate }
 class DateValidator < ActiveModel::EachValidator
   CHECKS = {
     # These keys make the most sense for dates
