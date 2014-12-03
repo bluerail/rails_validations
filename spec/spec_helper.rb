@@ -9,6 +9,7 @@ require 'action_view'
 require 'active_model'
 require 'active_record'
 require 'active_support'
+require 'active_support/all'
 
 #require 'rspec/rails'
 

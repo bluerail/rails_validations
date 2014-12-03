@@ -33,7 +33,11 @@ class DateValidator < ActiveModel::EachValidator
     value = if raw_value.is_a? Fixnum
               time.at(raw_value).to_date
             elsif raw_value.respond_to? :to_date
-              raw_value.to_date
+              begin
+                raw_value.to_date
+              rescue ArgumentError
+                false
+              end
             else
               false
             end

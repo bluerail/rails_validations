@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'active_support/core_ext/date/calculations'
 
 module ValidationsSpecHelper
   class Date < ValidationsSpecHelper::Record
@@ -60,6 +59,13 @@ describe ValidationsSpecHelper::Date do
       expect(model(Date.today).valid?).to eq(true)
       expect(model(Date.today.advance days: 1).valid?).to eq(false)
       expect(model(Date.today.advance days: -1).valid?).to eq(true)
+    end
+  end
+
+
+  it "works with input that is not even remotely a date" do
+    with_validation 'date: true' do
+      expect(model('Yesterday, a fish nibbled my toe.')).to_not be_valid
     end
   end
 end

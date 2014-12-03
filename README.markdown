@@ -97,26 +97,32 @@ Currently implemented countries:
 ChangeLog
 =========
 
-version 1.1.2, 20141201
------------------------
+Version 1.1.3, 2014-12-03
+-------------------------
+- Make sure that the date validator doesn’t throw an exception if
+  `'invalid'.to_date` fails.
+
+
+Version 1.1.2, 2014-12-01
+-------------------------
 - Fix typo in Dutch translation.
 - Update some docs.
 
 
-version 1.1.1, 20141013
------------------------
+Version 1.1.1, 2014-10-13
+-------------------------
 - Fix i18n key for `phone`.
 - Allow passing a Proc to `date` without an argument.
 
 
-version 1.1, 20141003
----------------------
+Version 1.1, 2014-10-03
+-----------------------
 - Make the date validation work if the column it points to is `nil`.
 - Add documentation.
 
 
-version 1.0, 20140905
----------------------
+Version 1.0, 2014-09-05
+-----------------------
 - Initial release.
 
 
