@@ -96,6 +96,10 @@ Currently implemented countries:
 
 ChangeLog
 =========
+Version 1.1.4, 2014-12-28
+-------------------------
+- Bugfix for Date validator when comparing to other columns that are a String.
+
 
 Version 1.1.3, 2014-12-03
 -------------------------

@@ -68,4 +68,12 @@ describe ValidationsSpecHelper::Date do
       expect(model('Yesterday, a fish nibbled my toe.')).to_not be_valid
     end
   end
+
+
+  it 'works when comparing to another column' do
+    with_validation 'date: { after: :v2 }' do
+      expect(model(Date.today, Date.today - 2.days)).to be_valid
+      expect(model(Date.today.to_s, (Date.today - 2.days).to_s)).to be_valid
+    end
+  end
 end

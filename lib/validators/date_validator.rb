@@ -27,24 +27,25 @@ class DateValidator < ActiveModel::EachValidator
   }.freeze
 
 
-  def validate_each record, attribute, raw_value
+  def value_to_date raw_value
     # TODO: Do we need to do anything with timezones? Figure it out (rails has
     # ActiveSupport::TimeWithZone)...
-    value = if raw_value.is_a? Fixnum
-              time.at(raw_value).to_date
-            elsif raw_value.respond_to? :to_date
-              begin
-                raw_value.to_date
-              rescue ArgumentError
-                false
-              end
-            else
-              false
-            end
+    if raw_value.is_a? Fixnum
+      time.at(raw_value).to_date
+    elsif raw_value.respond_to? :to_date
+      begin
+        raw_value.to_date
+      rescue ArgumentError
+        false
+      end
+    else
+      false
+    end
+  end
 
-            #elsif raw_value.is_a?(Symbol) || raw_value.is_a?(String)
-            #  # Assume another (date) attribute
-            #  record.send(raw_value).to_date
+
+  def validate_each record, attribute, raw_value
+    value = value_to_date raw_value
 
     unless value
       record.errors.add attribute, I18n.t('rails_validations.date.invalid')
@@ -59,7 +60,7 @@ class DateValidator < ActiveModel::EachValidator
                          raw_option_value.call record
                        end
                      elsif raw_option_value.is_a? Symbol
-                       record.send raw_option_value
+                       value_to_date record.send(raw_option_value)
                      elsif raw_option_value.is_a? Fixnum
                        time.at(raw_option_value).to_date
                      elsif raw_option_value.respond_to? :to_date

@@ -3,7 +3,7 @@ $:.push File.expand_path('../lib', __FILE__)
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = 'rails_validations'
-  s.version     = '1.1.3'
+  s.version     = '1.1.4'
   s.authors     = ['Martin Tournoij']
   s.email       = ['martin@lico.nl']
   s.homepage    = 'https://github.com/bluerail/rails_validations'
