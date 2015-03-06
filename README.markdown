@@ -6,16 +6,23 @@
 
 A few extra validations for Ruby on Rails.
 
-We try to do the ‘sane’ thing by not being too strict, when in doubt, we accept
+We try to do the sane thing by not being too strict, when in doubt, we accept
 input as being valid. We never want to reject valid input as invalid.
 
 For many formats doing a 100% foolproof check is not trivial, email addresses
 are a famous example, but it also applies to other formats.  
 Regardless, you can never be sure it’s what the user *intended* anyway. For
 example, email validators will accept `artin@ico.nl` as being ‘valid’, even
-though my email address is `martin@lico.nl.`.  
+though my email address is `martin@lico.nl`.  
 
 
+I18N
+====
+The gem includes English and Dutch error messages. If you want to translate it
+to another language then copy [`config/locales/en.yml`][tr] to your project.
+Please send us your translations so we can add them!
+
+[tr]: https://github.com/bluerail/rails_validations/blob/master/config/locales/en.yml
 
 
 Available validations
