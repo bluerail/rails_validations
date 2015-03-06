@@ -1,29 +1,28 @@
 # Validate if a column is a valid date, and if it's before or after another date.
 # 
 #  validates :date_column, date: true
-#  validates :date_column, date: { after: Date.today }
-#  validates :date_column, date: { after_or_equal_to: Date.today }
-#  validates :date_column, date: { equal_to: Date.today }
-#  validates :date_column, date: { before: Date.today }
-#  validates :date_column, date: { before_or_equal_to: Date.today }
+#
+# We use a lambda for these checks because otherwise Date.today would be
+# evaluated *only* on startup, and not every time we run the validations
+# (you never want this).
+#
+#   validates :date_column, date: { after: -> { Date.today } }
+#   validates :date_column, date: { after_or_equal_to: -> { Date.today } }
+#   validates :date_column, date: { equal_to: -> { Date.today } }
+#   validates :date_column, date: { before: -> { Date.today } }
+#   validates :date_column, date: { before_or_equal_to: -> { Date.today } }
 # 
 # Check if the column `enddate` is after the value of the column `begindate`
+#
 #   validates :begindate, date: true
 #   validates :enddate, date: { after: :begindate }
 class DateValidator < ActiveModel::EachValidator
   CHECKS = {
-    # These keys make the most sense for dates
     after: :>,
     after_or_equal_to: :>=,
     equal_to: :==,
     before: :<,
     before_or_equal_to: :<=,
-
-    # For compatibility with numericality
-    #greater_than: :>,
-    #greater_than_or_equal_to: :>=,
-    #less_than: :<,
-    #less_than_or_equal_to: :<=,
   }.freeze
 
 
@@ -48,7 +47,7 @@ class DateValidator < ActiveModel::EachValidator
     value = value_to_date raw_value
 
     unless value
-      record.errors.add attribute, I18n.t('rails_validations.date.invalid')
+      record.errors.add attribute, (options[:message] || I18n.t('rails_validations.date.invalid'))
       return
     end
 
@@ -70,12 +69,12 @@ class DateValidator < ActiveModel::EachValidator
                      end
 
       unless option_value
-        record.errors.add attribute, I18n.t('rails_validations.date.invalid')
+        record.errors.add attribute, (options[:message] || I18n.t('rails_validations.date.invalid'))
         return
       end
 
       unless value.send CHECKS[option], option_value
-        record.errors.add attribute, I18n.t("rails_validations.date.#{option}", date: I18n.l(option_value))
+        record.errors.add attribute, (options[:message] || I18n.t("rails_validations.date.#{option}", date: I18n.l(option_value)))
       end
     end
   end

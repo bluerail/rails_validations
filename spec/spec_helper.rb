@@ -11,16 +11,12 @@ require 'active_record'
 require 'active_support'
 require 'active_support/all'
 
-#require 'rspec/rails'
 
-# Requires supporting files with custom matchers and macros, etc,
-# in ./support/ and its subdirectories in alphabetic order.
-Dir["#{File.dirname(__FILE__)}/support/**/*.rb"].sort.each { |f| require f }
-
+# Include our validators
 Dir["#{File.dirname(__FILE__)}/../lib/**/*.rb"].sort.each { |f| require f }
 
+# Make sure I18N works
 I18n.enforce_available_locales = false if I18n.respond_to?(:enforce_available_locales)
-
 I18n.load_path += Dir["#{File.dirname(__FILE__)}/../config/locales/*.yml"]
 
 
@@ -33,10 +29,9 @@ module ValidationsSpecHelper
 
 
   class Record
-    extend ActiveModel::Naming # if defined?(ActiveModel::Naming)
-    include ActiveModel::Conversion# if defined?(ActiveModel::Conversion)
-    include ActiveModel::Validations# if defined?(ActiveModel::Validations)
-
+    extend ActiveModel::Naming
+    include ActiveModel::Conversion
+    include ActiveModel::Validations
 
     def initialize attr={}
       attr.each { |k, v| send("#{k}=", v) }
@@ -68,5 +63,29 @@ module ValidationsSpecHelper
     described_class.class_eval "validates :v, #{validate_string}"
 
     yield
+  end
+end
+
+
+RSpec::Matchers.define :be_valid do
+  match { |record | record.valid? == true && record.errors.blank? }
+end
+
+RSpec::Matchers.define :be_invalid do |i18n_key, i18n_params={}|
+  match do |record|
+    record.valid? == false &&
+      record.errors.first.present? &&
+      record.errors.first[1] == I18n.t("rails_validations.#{i18n_key}", **i18n_params)
+  end
+end
+
+
+shared_examples :validation do |validation|
+  it 'accepts a custom error message' do
+    with_validation "#{validation}: { message: 'foobar' }" do
+      m = described_class.new v: 'not even remotely valid'
+      expect(m.valid?).to eq(false)
+      expect(m.errors[:v].first).to eq('foobar')
+    end
   end
 end

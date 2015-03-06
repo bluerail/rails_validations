@@ -10,8 +10,10 @@ class IbanValidator < ActiveModel::EachValidator
 
     if options[:message]
       record.errors.add attribute, options[:message]
-    else
+    elsif options[:detailed_errors]
       errors.each { |e| record.errors.add attribute, I18n.t("rails_validations.iban.#{e}") }
+    else
+      record.errors.add attribute, I18n.t("rails_validations.iban.invalid")
     end
   end
 end

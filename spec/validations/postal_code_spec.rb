@@ -9,6 +9,7 @@ end
 describe ValidationsSpecHelper::PostalCode do
   include ValidationsSpecHelper
 
+  it_behaves_like :validation, 'postal_code'
 
   it 'works for nl codes' do
     with_validation 'postal_code: { country: :nl }' do
@@ -18,7 +19,7 @@ describe ValidationsSpecHelper::PostalCode do
         9999\ aa
         1234\ AA
       }.each do |v|
-        expect(model(v).valid?).to eq(true)
+        expect(model(v)).to be_valid
       end
     end
   end
@@ -32,7 +33,7 @@ describe ValidationsSpecHelper::PostalCode do
         9999\ a
         1234\ AAA
       }.each do |v|
-        expect(model(v).valid?).to eq(false)
+        expect(model(v)).to be_invalid('postal_code.invalid')
       end
     end
   end

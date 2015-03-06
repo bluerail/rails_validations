@@ -26,4 +26,4 @@ nl:
     domain:
       invalid: geen geldig domain
       max_domain_parts: er zijn %{max} domeinstukken toegestaan
-      min_domain_parts: er moeten minimaal %{min} domainstukken zijn
+      min_domain_parts: er moeten minimaal %{min} domeinstukken zijn

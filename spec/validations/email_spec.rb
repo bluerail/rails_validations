@@ -9,6 +9,7 @@ end
 describe ValidationsSpecHelper::Email do
   include ValidationsSpecHelper
 
+  it_behaves_like :validation, 'email'
 
   it 'gives an error on invalid emails' do
     with_validation 'email: true' do
@@ -23,8 +24,14 @@ describe ValidationsSpecHelper::Email do
         in\ valid@example.com
         invalid@exam\ ple.com
       }.each do |v|
-        expect(model(v).valid?).to eq(false)
+        expect(model(v)).to be_invalid('email.invalid')
       end
+
+      # Newlines in email addresses is a potential security problem, do double
+      # check this
+      expect(model("no\nnewlines@example.com")).to be_invalid('email.invalid')
+      expect(model("no\rnewlines@example.com")).to be_invalid('email.invalid')
+      expect(model("no\r\nnewlines@example.com")).to be_invalid('email.invalid')
     end
   end
 
@@ -36,20 +43,12 @@ describe ValidationsSpecHelper::Email do
         valid.address@example.com
         valid-example@example.com
         valid+address@example.com
+        valid@more.than.one.example.com
         valid@example.anewtld
         مفتوح.ذبابة@إرهاب.شبكة
       }.each do |v|
-        expect(model(v).valid?).to eq(true)
+        expect(model(v)).to be_valid
       end
-    end
-  end
-
-
-  it 'accepts a custom error message' do
-    with_validation 'email: { message: "foobar" }' do
-      m = described_class.new v: 'not even remotely valid'
-      m.valid?
-      expect(m.errors[:v].first).to eq('foobar')
     end
   end
 end

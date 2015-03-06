@@ -9,63 +9,64 @@ end
 describe ValidationsSpecHelper::Date do
   include ValidationsSpecHelper
 
+  it_behaves_like :validation, 'date'
 
   it 'works with true' do
     with_validation 'date: true' do
-      expect(model(Date.today).valid?).to eq(true)
-      expect(model(Time.now).valid?).to eq(true)
+      expect(model(Date.today)).to be_valid
+      expect(model(Time.now)).to be_valid
     end
   end
 
 
   it 'works with :after' do
     with_validation 'date: { after: ::Date.today }' do
-      expect(model(Date.today).valid?).to eq(false)
-      expect(model(Date.today.advance days: 1).valid?).to eq(true)
-      expect(model(Date.today.advance days: -1).valid?).to eq(false)
+      expect(model(Date.today.advance days: 1)).to be_valid
+      expect(model(Date.today)).to be_invalid('date.after', date: Date.today)
+      expect(model(Date.today.advance days: -1)).to be_invalid('date.after', date: Date.today)
     end
   end
 
 
   it 'works with :after_or_equal_to:' do
     with_validation 'date: { after_or_equal_to: ::Date.today }' do
-      expect(model(Date.today).valid?).to eq(true)
-      expect(model(Date.today.advance days: 1).valid?).to eq(true)
-      expect(model(Date.today.advance days: -1).valid?).to eq(false)
+      expect(model(Date.today)).to be_valid
+      expect(model(Date.today.advance days: 1)).to be_valid
+      expect(model(Date.today.advance days: -1)).to be_invalid('date.after_or_equal_to', date: Date.today)
     end
   end
 
 
   it 'works with :equal_to' do
     with_validation 'date: { equal_to: ::Date.today }' do
-      expect(model(Date.today).valid?).to eq(true)
-      expect(model(Date.today.advance days: 1).valid?).to eq(false)
-      expect(model(Date.today.advance days: -1).valid?).to eq(false)
+      expect(model(Date.today)).to be_valid
+      expect(model(Date.today.advance days: 1)).to be_invalid('date.equal_to', date: Date.today)
+      expect(model(Date.today.advance days: -1)).to be_invalid('date.equal_to', date: Date.today)
     end
   end
 
 
   it 'works with :before' do
     with_validation 'date: { before: ::Date.today }' do
-      expect(model(Date.today).valid?).to eq(false)
-      expect(model(Date.today.advance days: 1).valid?).to eq(false)
-      expect(model(Date.today.advance days: -1).valid?).to eq(true)
+      expect(model(Date.today.advance days: -1)).to be_valid
+      expect(model(Date.today)).to be_invalid('date.before', date: Date.today)
+      expect(model(Date.today.advance days: 1)).to be_invalid('date.before', date: Date.today)
     end
   end
 
 
   it 'works with :before_or_equal_to' do
     with_validation 'date: { before_or_equal_to: ::Date.today }' do
-      expect(model(Date.today).valid?).to eq(true)
-      expect(model(Date.today.advance days: 1).valid?).to eq(false)
-      expect(model(Date.today.advance days: -1).valid?).to eq(true)
+      expect(model(Date.today)).to be_valid
+      expect(model(Date.today.advance days: -1)).to be_valid
+      expect(model(Date.today.advance days: 1)).to be_invalid('date.before_or_equal_to', date: Date.today)
     end
   end
 
 
   it "works with input that is not even remotely a date" do
     with_validation 'date: true' do
-      expect(model('Yesterday, a fish nibbled my toe.')).to_not be_valid
+      expect(model('Yesterday, a fish nibbled my toe.')).to be_invalid('date.invalid')
     end
   end
 

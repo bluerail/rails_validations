@@ -8,7 +8,8 @@ end
 
 describe ValidationsSpecHelper::Phone do
   include ValidationsSpecHelper
-
+  
+  it_behaves_like :validation, 'phone'
 
   it 'allows valid phone numbers' do
     with_validation 'phone: true' do
@@ -19,7 +20,7 @@ describe ValidationsSpecHelper::Phone do
         (+31)\ 06-51552300
         (+1)\ 06.51.55.23.00
       }.each do |v|
-        expect(model(v).valid?).to eq(true)
+        expect(model(v)).to be_valid
       end
     end
   end
@@ -34,7 +35,7 @@ describe ValidationsSpecHelper::Phone do
       123
       132131313213213123123213213131231242312554
       }.each do |v|
-        expect(model(v).valid?).to eq(false)
+        expect(model(v)).to be_invalid('phone.invalid')
       end
     end
   end

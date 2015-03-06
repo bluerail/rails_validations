@@ -4,7 +4,7 @@
 [![Inline docs](http://inch-ci.org/github/bluerail/rails_validations.svg?branch=master)](http://inch-ci.org/github/bluerail/rails_validations)
 
 
-A few extra validations for Rails.
+A few extra validations for Ruby on Rails.
 
 We try to do the ‘sane’ thing by not being too strict, when in doubt, we accept
 input as being valid. We never want to reject valid input as invalid.
@@ -16,16 +16,26 @@ example, email validators will accept `artin@ico.nl` as being ‘valid’, even
 though my email address is `martin@lico.nl.`.  
 
 
+
+
+Available validations
+=====================
+
 date
 ----
 Validate if a column is a valid date, and if it’s before or after another date.
 
+    # Check if it looks like a valid date
     validates :date_column, date: true
-    validates :date_column, date: { after: Date.today }
-    validates :date_column, date: { after_or_equal_to: Date.today }
-    validates :date_column, date: { equal_to: Date.today }
-    validates :date_column, date: { before: Date.today }
-    validates :date_column, date: { before_or_equal_to: Date.today }
+
+    # We use a lambda for these checks because otherwise Date.today would be
+    # evaluated *only* on startup, and not every time we run the validations
+    # (you never want this).
+    validates :date_column, date: { after: -> { Date.today } }
+    validates :date_column, date: { after_or_equal_to: -> { Date.today } }
+    validates :date_column, date: { equal_to: -> { Date.today } }
+    validates :date_column, date: { before: -> { Date.today } }
+    validates :date_column, date: { before_or_equal_to: -> { Date.today } }
 
 Check if the column `enddate` is after the value of the column `begindate`:
 
@@ -41,7 +51,7 @@ This will accept `lico.nl`, but rejects `martin@lico.nl`:
 
     validates :domain_column, domain: true
 
-Set a minimum/maximum number of domain parts (aka. labels), this will accept
+Set a minimum and maximum number of domain parts (aka. labels), this will accept
 `lico.nl`, but rejects `lico`:
 
     validates :domain_column, domain: { min_domain_parts: 2 }
@@ -53,10 +63,10 @@ Accept `lico.nl`, but reject `www.lico.nl`:
 
 email
 -----
-Validate if a string looks liek an email address. This should work with unicode
+Validate if a string looks like an email address. This should work with unicode
 addresses ([RFC 6531][rfc6531], [IDN][idn]).
 
-Accepts `martin@lico.nl`, but rejects `martinlico.nl` or `martin@lico`
+Accepts `martin@lico.nl`, but rejects `martinlico.nl` or `martin@lico`:
 
     validates :email_column, email: true
 
@@ -68,13 +78,18 @@ Check if this is a valid IBAN account number. This uses the
 
     validates :iban_column, iban: true
 
+By default we set “not a valid IBAN account number” as the error message, but we
+can also set more detailed errors:
+  
+    validates :iban_column, iban: { detailed_errors: true }
+
 
 phone
 -----
 Check if this is a valid phone number. This should work with most, if not all,
 writing conventions. We consider a phone to be valid if it consists of numbers &
-any number of ` \-.()`; a country code at the start indicated with `+` is also
-accepted.
+any amount of ` \-.()` characters. A country code at the start indicated with
+`+` is also accepted.
 
     validates :phone_column, phone: true
 
@@ -96,6 +111,14 @@ Currently implemented countries:
 
 ChangeLog
 =========
+Version 1.2, 2015-03-07
+-----------------------
+- The IBAN check will now defaults to just a "is invalid" message, set the
+  `detailed_errors` option to get the more detailed errors.
+- Also allow emails with multiple domains (e.g. `test@hello.world.example.com`).
+- Date validation now accepts a custom message.
+
+
 Version 1.1.4, 2014-12-28
 -------------------------
 - Bugfix for Date validator when comparing to other columns that are a String.
