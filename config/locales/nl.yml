@@ -27,3 +27,9 @@ nl:
       invalid: geen geldig domain
       max_domain_parts: er zijn %{max} domeinstukken toegestaan
       min_domain_parts: er moeten minimaal %{min} domeinstukken zijn
+
+    vat_number:
+      invalid: geen geldig BTW nummer
+
+    commerce_number:
+      invalid: geen geldig KvK nummer

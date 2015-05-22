@@ -116,8 +116,39 @@ Currently implemented countries:
 - `nl` - The Netherlands
 
 
+commerce\_number
+---------------
+Check if this is a valid chamber of commerce identification number.
+
+    validates :commerce_number_column, commerce_number: { country: :nl }
+
+Currently implemented countries:
+
+- `nl` - The Netherlands
+
+
+vat\_number
+-----------
+Check if this is a valid [VAT identification number](https://en.wikipedia.org/wiki/VAT_identification_number)
+
+    validates :vat_number_column, vat_number: { country: :nl }
+
+Currently implemented countries:
+
+- `nl` - The Netherlands
+
+
 ChangeLog
 =========
+
+Version 1.3, 2015-05-22
+-----------------------
+- Add `commerce_number` validation.
+- Add `vat_number` validation.
+- The `postal_code` validation will now raise an error if an invalid country
+  code is given.
+
+
 Version 1.2, 2015-03-07
 -----------------------
 - The IBAN check will now defaults to just a "is invalid" message, set the

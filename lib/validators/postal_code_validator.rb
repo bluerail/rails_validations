@@ -8,6 +8,7 @@ class PostalCodeValidator < ActiveModel::EachValidator
   def validate_each record, attribute, value 
     key = (options[:country] || I18n.locale).downcase.to_sym
     key = :gb if key == :uk  # Since it's easy to get this wrong
+    raise ArgumentError, "There is no validation for the country `#{key}'" if REGEXP[key].nil?
 
     record.errors.add attribute, (options[:message] || I18n.t('rails_validations.postal_code.invalid')) unless value =~ REGEXP[key]
   end

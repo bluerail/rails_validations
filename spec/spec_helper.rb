@@ -82,10 +82,19 @@ end
 
 shared_examples :validation do |validation|
   it 'accepts a custom error message' do
-    with_validation "#{validation}: { message: 'foobar' }" do
+    with_validation "#{validation}: { country: :nl, message: 'foobar' }" do
       m = described_class.new v: 'not even remotely valid'
       expect(m.valid?).to eq(false)
       expect(m.errors[:v].first).to eq('foobar')
+    end
+  end
+end
+
+
+shared_examples :country_code do |validation|
+  it 'raises an error on an invalid country' do
+    with_validation "#{validation}: { country: :not_a_country_code }" do
+      expect { described_class.new(v: 123).valid? }.to raise_error(ArgumentError)
     end
   end
 end

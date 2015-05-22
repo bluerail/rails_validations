@@ -10,6 +10,7 @@ describe ValidationsSpecHelper::PostalCode do
   include ValidationsSpecHelper
 
   it_behaves_like :validation, 'postal_code'
+  it_behaves_like :country_code, 'postal_code'
 
   it 'works for nl codes' do
     with_validation 'postal_code: { country: :nl }' do

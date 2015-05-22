@@ -27,3 +27,9 @@ en:
       invalid: not a valid domain
       max_domain_parts: only %{max} domain parts are allowed
       min_domain_parts: needs to have at least %{min} domain parts
+
+    vat_number:
+      invalid: not a valid VAT identification number
+
+    commerce_number:
+      invalid: not a valid chamber of commerce number
