@@ -77,4 +77,26 @@ describe ValidationsSpecHelper::Date do
       expect(model(Date.today.to_s, (Date.today - 2.days).to_s)).to be_valid
     end
   end
+
+  it 'works when giving a string' do
+    with_validation 'date: true' do
+      [
+        '2015-01-01',
+        '01-09-2015',
+        '06-2015',
+      ].each do |str|
+        expect(model(str)).to be_valid
+      end
+    end
+  end
+
+  it "sets an errors when a string isn't quite a valid date" do
+    with_validation 'date: true' do
+      [
+        '6-2015',
+      ].each do |str|
+        expect(model(str)).to be_invalid('date.invalid')
+      end
+    end
+  end
 end

@@ -34,11 +34,15 @@ class DateValidator < ActiveModel::EachValidator
     elsif raw_value.respond_to? :to_date
       begin
         raw_value.to_date
-      rescue ArgumentError
+      rescue
         false
       end
     else
-      false
+      begin
+        Date.parse raw_value
+      rescue
+        false
+      end
     end
   end
 
