@@ -16,6 +16,7 @@ describe ValidationsSpecHelper::Iban do
       %w{
         NL65AEGO0721647952
         NL43ABNA0841376913
+        NL29INGB0006303043
       }.each do |v|
         expect(model(v)).to be_valid
       end
