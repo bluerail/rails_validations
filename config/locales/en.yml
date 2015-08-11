@@ -1,5 +1,8 @@
 en:
   rails_validations:
+    postal_code:
+      invalid: not a valid postal code
+
     email:
       invalid: not a valid email address
 

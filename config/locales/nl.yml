@@ -1,5 +1,8 @@
 nl:
   rails_validations:
+    postal_code:
+      invalid: geen geldige postcode
+
     email:
       invalid: geen geldig e-mailaddress
 
