@@ -1,3 +1,5 @@
+# encoding: utf-8
+#
 # Validate if a string is a valid domain. This should work with IDN.
 #
 #  validates :domain_column, domain: true

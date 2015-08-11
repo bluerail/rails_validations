@@ -59,7 +59,10 @@ module ValidationsSpecHelper
 
 
   def with_validation validate_string
-    described_class.clear_validators!
+    #Rails 4: described_class.clear_validators!
+    described_class.reset_callbacks(:validate)
+    described_class._validators.clear
+
     described_class.class_eval "validates :v, #{validate_string}"
 
     yield
@@ -75,7 +78,7 @@ RSpec::Matchers.define :be_invalid do |i18n_key, i18n_params={}|
   match do |record|
     record.valid? == false &&
       record.errors.first.present? &&
-      record.errors.first[1] == I18n.t("rails_validations.#{i18n_key}", **i18n_params)
+      record.errors.first[1] == I18n.t("rails_validations.#{i18n_key}", i18n_params)
   end
 end
 

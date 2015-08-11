@@ -3,7 +3,7 @@ class CommerceNumberValidator < ActiveModel::EachValidator
   # keys are ISO-3366-1 alpha2
   REGEXP = {
     # KvK nummer; 8 digits. Allow space, -, and . for formatting
-    nl: -> (v) { v.gsub(/[.\- ]/, '') =~ /\A\d{8}\z/ },
+    nl: ->(v) { v.gsub(/[.\- ]/, '') =~ /\A\d{8}\z/ },
   }.freeze
 
 

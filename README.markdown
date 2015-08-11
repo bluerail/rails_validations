@@ -4,7 +4,8 @@
 [![Inline docs](http://inch-ci.org/github/bluerail/rails_validations.svg?branch=master)](http://inch-ci.org/github/bluerail/rails_validations)
 
 
-A few extra validations for Ruby on Rails.
+A few extra validations for Ruby on Rails. Works with Ruby 1.9 and newer, and
+Rails 3 and newer (including Rails 4).
 
 We try to do the sane thing by not being too strict, when in doubt, we accept
 input as being valid. We never want to reject valid input as invalid.
@@ -140,6 +141,11 @@ Currently implemented countries:
 
 ChangeLog
 =========
+
+Version 1.4, 2015-08-11
+-----------------------
+- Make it work with Ruby 1.9 and Rails 3.0
+
 
 Version 1.3, 2015-05-22
 -----------------------

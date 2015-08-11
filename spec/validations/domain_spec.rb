@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 require 'spec_helper'
 
 module ValidationsSpecHelper
@@ -38,7 +40,7 @@ describe ValidationsSpecHelper::Domain do
     end
   end
 
-  
+
   it 'works with :max_domain_parts' do
     with_validation 'domain: { max_domain_parts: 3 }' do
       expect(model('not.many')).to be_valid

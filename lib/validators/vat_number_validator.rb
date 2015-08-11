@@ -6,7 +6,7 @@ class VatNumberValidator < ActiveModel::EachValidator
     # 'NL' + 9 digits + B + 2-digit company index – e.g. NL999999999B99
     # Allow space, -, and . for formatting
     # TODO: I think this also has a check digit?
-    nl: -> (v) { v.upcase.gsub(/[.\- ]/, '') =~ /\ANL\d{9}B\d{2}\z/ },
+    nl: ->(v) { v.upcase.gsub(/[.\- ]/, '') =~ /\ANL\d{9}B\d{2}\z/ },
   }.freeze
 
 

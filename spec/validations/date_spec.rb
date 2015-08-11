@@ -83,7 +83,6 @@ describe ValidationsSpecHelper::Date do
       [
         '2015-01-01',
         '01-09-2015',
-        '06-2015',
       ].each do |str|
         expect(model(str)).to be_valid
       end

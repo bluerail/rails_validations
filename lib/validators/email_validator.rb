@@ -1,3 +1,5 @@
+# encoding: utf-8
+#
 # Validate email, also works with UTF-8/IDN.
 #
 # The validation is intentionally simply, you can never be sure an email is
