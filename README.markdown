@@ -147,7 +147,7 @@ ChangeLog
 
 Version 2.0, 2015-08-19
 -----------------------
-- Don't depend on the `iban-tools gem. If you want IBAN validations, then you
+- Don't depend on the `iban-tools` gem. If you want IBAN validations, then you
   must add `gem iban-tools` to your Gemfile manually (this is the only change,
   but since it's incompatible I bumped the version to 2.0).
 
