@@ -1,10 +1,9 @@
 PATH
   remote: .
   specs:
-    rails_validations (1.4.1)
+    rails_validations (2.0)
       actionpack (> 3.0)
       activerecord (> 3.0)
-      iban-tools (~> 1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -42,7 +41,7 @@ GEM
     i18n (0.7.0)
     iban-tools (1.0.0)
     json (1.8.3)
-    loofah (2.0.2)
+    loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mini_portile (0.6.2)
     minitest (5.8.0)
@@ -53,7 +52,7 @@ GEM
       rack (>= 1.0)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
-    rails-dom-testing (1.0.6)
+    rails-dom-testing (1.0.7)
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6.0)
       rails-deprecated_sanitizer (>= 1.0.1)
@@ -91,6 +90,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  iban-tools (~> 1.0)
   rails_validations!
   rspec-rails (~> 3.0)
 

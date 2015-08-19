@@ -88,9 +88,12 @@ Check if this is a valid IBAN account number. This uses the
 
 By default we set “not a valid IBAN account number” as the error message, but we
 can also set more detailed errors:
-  
+
     validates :iban_column, iban: { detailed_errors: true }
 
+**Note** Since version 2.0, this gem no longer depends on iban-tools.  If you
+want IBAN validations, then you must add `gem iban-tools` it to your Gemfile
+manually.
 
 phone
 -----
@@ -141,6 +144,13 @@ Currently implemented countries:
 
 ChangeLog
 =========
+
+Version 2.0, 2015-08-19
+-----------------------
+- Don't depend on the `iban-tools gem. If you want IBAN validations, then you
+  must add `gem iban-tools` to your Gemfile manually (this is the only change,
+  but since it's incompatible I bumped the version to 2.0).
+
 
 Version 1.4, 2015-08-11
 -----------------------
