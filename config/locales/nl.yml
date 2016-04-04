@@ -4,7 +4,7 @@ nl:
       invalid: geen geldige postcode
 
     email:
-      invalid: geen geldig e-mailaddress
+      invalid: geen geldig e-mailadres
 
     date:
       invalid: geen geldige datum
@@ -17,8 +17,8 @@ nl:
     iban:
       invalid: geen geldig IBAN rekeningnummer
       too_short: moet meer dan 5 karakters bevatten
-      bad_chars: kan alleen letters en nummers bevatten
-      bad_check_digits: checksum klopt niet
+      bad_chars: kan alleen letters en cijfers bevatten
+      bad_check_digits: controlegetal klopt niet
       unknown_country_code: ongeldige landcode
       bad_length: verkeerde lengte
       bad_format: verkeerd formaat
@@ -27,7 +27,7 @@ nl:
       invalid: geen geldig telefoonnummer
 
     domain:
-      invalid: geen geldig domain
+      invalid: geen geldig domein
       max_domain_parts: er zijn %{max} domeinstukken toegestaan
       min_domain_parts: er moeten minimaal %{min} domeinstukken zijn
 
