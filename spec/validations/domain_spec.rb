@@ -56,5 +56,11 @@ describe ValidationsSpecHelper::Domain do
       expect(model('more.than.enough.parts')).to be_valid
       expect(model('too.few')).to be_invalid('domain.min_domain_parts', min: 3)
     end
+
+    with_validation 'domain: { min_domain_parts: 1 }' do
+      expect(model('enough')).to be_valid
+      expect(model(nil)).to be_invalid('domain.min_domain_parts', min: 1)
+      expect(model('')).to be_invalid('domain.min_domain_parts', min: 1)
+    end
   end
 end

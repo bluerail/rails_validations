@@ -36,7 +36,7 @@ class DomainValidator < ActiveModel::EachValidator
 
 
   def validate_each record, attribute, value
-    parts = value.split '.'
+    parts = value.respond_to?(:split) ? value.split('.') : []
 
     parts.each do |part|
       record.errors.add attribute, (options[:message] || I18n.t('rails_validations.domain.invalid')) unless part =~ REGEXP
