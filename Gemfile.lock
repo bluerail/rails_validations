@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    rails_validations (2.0)
+    rails_validations (2.1)
       actionpack (> 3.0)
       activerecord (> 3.0)
 
@@ -95,4 +95,4 @@ DEPENDENCIES
   rspec-rails (~> 3.0)
 
 BUNDLED WITH
-   1.10.5
+   1.13.5
