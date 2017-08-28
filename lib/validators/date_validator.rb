@@ -29,7 +29,7 @@ class DateValidator < ActiveModel::EachValidator
   def value_to_date raw_value
     # TODO: Do we need to do anything with timezones? Figure it out (rails has
     # ActiveSupport::TimeWithZone)...
-    if raw_value.is_a? Fixnum
+    if raw_value.is_a? Integer
       time.at(raw_value).to_date
     elsif raw_value.respond_to? :to_date
       begin
@@ -64,7 +64,7 @@ class DateValidator < ActiveModel::EachValidator
                        end
                      elsif raw_option_value.is_a? Symbol
                        value_to_date record.send(raw_option_value)
-                     elsif raw_option_value.is_a? Fixnum
+                     elsif raw_option_value.is_a? Integer
                        time.at(raw_option_value).to_date
                      elsif raw_option_value.respond_to? :to_date
                        raw_option_value.to_date
