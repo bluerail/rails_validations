@@ -3,7 +3,7 @@ $:.push File.expand_path('../lib', __FILE__)
 # Describe your gem and declare its dependencies:
 Gem::Specification.new do |s|
   s.name        = 'rails_validations'
-  s.version     = '2.1'
+  s.version     = '2.2'
   s.authors     = ['Martin Tournoij']
   s.email       = ['martin@lico.nl']
   s.homepage    = 'https://github.com/bluerail/rails_validations'
@@ -16,8 +16,8 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 1.9'
 
-  s.add_dependency 'actionpack', '> 3.0'
-  s.add_dependency 'activerecord', '> 3.0'
-  s.add_development_dependency 'rspec-rails', '~> 3.0'
+  s.add_dependency 'actionpack', '~> 4.2.8'
+  s.add_dependency 'activerecord', '> 4.0'
+  s.add_development_dependency 'rspec-rails', '~> 3.6'
   s.add_development_dependency 'iban-tools', '~> 1.0'
 end
