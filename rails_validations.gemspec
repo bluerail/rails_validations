@@ -16,8 +16,8 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '>= 1.9'
 
-  s.add_dependency 'actionpack', '~> 4.2.8'
-  s.add_dependency 'activerecord', '> 4.0'
-  s.add_development_dependency 'rspec-rails', '~> 3.6'
+  s.add_dependency 'actionpack', '>= 4.2.8'
+  s.add_dependency 'activerecord', '>= 4.0'
+  s.add_development_dependency 'rspec-rails', '>= 3.6'
   s.add_development_dependency 'iban-tools', '~> 1.0'
 end
