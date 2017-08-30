@@ -2,8 +2,8 @@ PATH
   remote: .
   specs:
     rails_validations (2.2)
-      actionpack (~> 4.2.8)
-      activerecord (> 4.0)
+      actionpack (>= 4.2.8)
+      activerecord (>= 4.0)
 
 GEM
   remote: https://rubygems.org/
@@ -90,7 +90,7 @@ PLATFORMS
 DEPENDENCIES
   iban-tools (~> 1.0)
   rails_validations!
-  rspec-rails (~> 3.6)
+  rspec-rails (>= 3.6)
 
 BUNDLED WITH
    1.15.4
