@@ -10,10 +10,10 @@ We try to do the sane thing by not being too strict, when in doubt, we accept
 input as being valid. We never want to reject valid input as invalid.
 
 For many formats doing a 100% foolproof check is not trivial, email addresses
-are a famous example, but it also applies to other formats.  
+are a famous example, but it also applies to other formats.
 Regardless, you can never be sure it’s what the user *intended* anyway. For
 example, email validators will accept `artin@ico.nl` as being ‘valid’, even
-though my email address is `martin@lico.nl`.  
+though my email address is `martin@lico.nl`.
 
 
 I18N
@@ -143,6 +143,10 @@ Currently implemented countries:
 
 ChangeLog
 =========
+
+Version 2.3, 2017-08-31
+-----------------------
+- Slacken dependencies
 
 Version 2.2, 2017-08-28
 -----------------------
